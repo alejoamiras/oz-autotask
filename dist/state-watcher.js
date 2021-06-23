@@ -12,16 +12,11 @@ const handler = async (event) => {
   const matches = [];
   for (let i = 0; i < body.events.length; i++) {
     const event = body.events[i];
-    // console.log(event);
-    // console.log(event.transaction.logs);
     console.log(event.matchReasons);
     const contract = new ethers_2.ethers.Contract(event.transaction.to, event.sentinel.abi, signer);
     if (threshold.gte(await contract.credits(await contract.STATIC_JOB()))) {
       matches.push({
         hash: event.hash,
-        metadata: {
-          sentinel: event.sentinel.name,
-        },
       });
     }
   }

@@ -37,9 +37,6 @@ const handler: Handler = async (event: AutotaskEvent): Promise<object | undefine
     if (threshold.gte(await contract.credits(await contract.STATIC_JOB()))) {
       matches.push({
         hash: event.hash,
-        metadata: {
-          sentinel: event.sentinel.name,
-        },
       });
     }
   }
